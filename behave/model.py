@@ -286,6 +286,7 @@ class Feature(TagAndStatusStatement, Replayable):
         runner.context.tags = set(self.tags)
 
         skip_feature_untested = runner.aborted
+        runner.run_hook("before_feature_should_run", runner.context, self)
         run_feature = self.should_run(runner.config)
         failed_count = 0
         hooks_called = False
